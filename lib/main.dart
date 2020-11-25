@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/Nikhil/AndroidStudioProjects/octo_assignment/lib/pages/homepage.dart';
+
+import 'pages/homepage.dart';
+
 void main() {
   runApp(MyApp());
 }
