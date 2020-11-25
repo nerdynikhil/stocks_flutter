@@ -1,24 +1,25 @@
-class Stock{
-  final String symbol;
-  final String company;
-  final double price;
+import 'dart:convert';
 
-  Stock({this.symbol, this.company, this.price});
+List<Stock> stockFromJson(String str) => List<Stock>.from(json.decode(str).map((x) => Stock.fromJson(x)));
 
-  static List<Stock> getAll(){
-    List<Stock> stocks = List<Stock>();
+String stockToJson(List<Stock> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-    stocks.add(Stock(company: "Apple Computers", symbol: "APPLE", price: 258));
-    stocks.add(Stock(company: "Alphabet", symbol: "ALPH", price: 800));
-    stocks.add(Stock(company: "General Electronics", symbol: "GE", price: 56.00));
-    stocks.add(Stock(company: "Evergreen Solar", symbol: "EVR", price: 9.0));
-    stocks.add(Stock(company: "Facebook", symbol: "FB", price: 200));
-    stocks.add(Stock(company: "Samsung", symbol: "SAM", price: 134));
-    stocks.add(Stock(company: "Snapchat", symbol: "SNAP", price: 45));
-    stocks.add(Stock(company: "Microsoft", symbol: "MSOFT", price: 400));
-    stocks.add(Stock(company: "Google", symbol: "GOOG", price: 1800));
+class Stock {
+    Stock({
+        this.symbol,
+        this.basevalue,
+    });
 
-    return stocks;
+    String symbol;
+    double basevalue;
 
-  }
+    factory Stock.fromJson(Map<String, dynamic> json) => Stock(
+        symbol: json["symbol"],
+        basevalue: json["basevalue"].toDouble(),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "symbol": symbol,
+        "basevalue": basevalue,
+    };
 }
