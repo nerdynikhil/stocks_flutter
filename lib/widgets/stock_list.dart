@@ -12,39 +12,38 @@ class StockList extends StatelessWidget {
       separatorBuilder: (context, index) {
         return Divider(color: Colors.grey[400]);
       },
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       itemBuilder: (context, index) {
-
-        final stock =stocks[index];
-
+        final stock = stocks[index];
         return ListTile(
-          contentPadding: EdgeInsets.all(10),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: [
-              Text("${stock.symbol}",style: TextStyle(color: Colors.white, fontSize: 24,
-              fontWeight: FontWeight.w500),),
-              Text("${stock.company}",style: TextStyle(color: Colors.grey, fontSize: 20,
-                  fontWeight: FontWeight.w500),),
-            ],
-          ),
-          trailing: Column(children: [
-            Text("${stock.price}",style: TextStyle(color: Colors.white, fontSize: 24,
-                fontWeight: FontWeight.w500),),
-            Container(
-              child: Text("-1.02%", style: TextStyle(
-                color: Colors.white
-              ),),
-              width: 75,
-              height: 25,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.red
-              ),
-            )
-          ],),
-        );
+            title: Text("${stock.symbol}",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500)),
+            subtitle: Text("${stock.symbol}",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500)),
+            trailing: Column(mainAxisSize: MainAxisSize.min, children: [
+              Text("${stock.basevalue.toStringAsFixed(2)}",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500)),
+              Material(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                    child: Text(
+                      "-1.02%",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.red)
+            ]));
       },
       itemCount: stocks.length,
     );
