@@ -1,37 +1,57 @@
-import 'package:flutter/material.dart';
+import'package:flutter/material.dart';
 import 'package:octo_assignment/api_services/stock_api_services.dart';
 import 'package:octo_assignment/models/stock.dart';
+import 'package:octo_assignment/pages/portfolio.dart';
 import 'package:octo_assignment/widgets/stock_list.dart';
 
 class HomePage extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text("View your portfolio"),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+                onTap: () async {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => Portfolio()));
+
+                },
+                child: Icon(Icons.arrow_forward_ios)),
+          )
+        ],
+      ),
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-              child: Text(
-                "Stocks",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              height: MediaQuery.of(context).size.height*0.2,
+              width: MediaQuery.of(context).size.width*0.98,
+              child: Card(
+                  elevation: 5,
+
+                  color: Colors.grey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('You can selected any 10 stocks',style: TextStyle(color: Colors.white, fontSize: 25),),
+                      Text('from the list to create a portfolio',style: TextStyle(color: Colors.white, fontSize: 25),),
+
+                    ],
+                  )
+
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Text(
-                "November 24",
-                style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               child: SizedBox(
